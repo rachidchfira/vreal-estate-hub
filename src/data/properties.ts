@@ -25,7 +25,7 @@ export interface Property {
 export const properties: Property[] = [
   {
     id: "prop-001",
-    title: "Luxury Penthouse",
+    title: "Luxury Penthouse vivo",
     titleVi: "Căn hộ Penthouse Sang Trọng với Tầm Nhìn Toàn Cảnh",
     description: "Experience unparalleled luxury in this stunning penthouse located in the heart of District 1. Featuring floor-to-ceiling windows, high-end finishes, and breathtaking views of the city skyline and Saigon River.",
     descriptionVi: "Trải nghiệm sự sang trọng không gì sánh bằng trong căn penthouse tuyệt đẹp này nằm ở trung tâm Quận 1. Với cửa sổ từ sàn đến trần, nội thất cao cấp và tầm nhìn ngoạn mục ra đường chân trời thành phố và Sông Sài Gòn.",
