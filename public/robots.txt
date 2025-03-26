@@ -1,14 +1,31 @@
+
+# Allow all web crawlers
+User-agent: *
+Allow: /
+
+# Specific rules for major search engines
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+# Social media crawlers
 User-agent: Twitterbot
 Allow: /
 
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
-Allow: /
+# Sitemap location
+Sitemap: https://vietnamluxuryrealestate.com/sitemap.xml
+
+# Disallow duplicate or utility pages (add as needed)
+Disallow: /404
+Disallow: /thankyou
