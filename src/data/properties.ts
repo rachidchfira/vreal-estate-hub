@@ -113,7 +113,7 @@ export const properties: Property[] = [
     titleVi: "Căn Hộ Cao Cấp Tại Landmark 81",
     description: "This high-end apartment offers breathtaking views from Vietnam's tallest building. Enjoy premium amenities, designer interiors, and unparalleled city views from every room.",
     descriptionVi: "Căn hộ cao cấp này mang đến tầm nhìn tuyệt đẹp từ tòa nhà cao nhất Việt Nam. Tận hưởng các tiện nghi hàng đầu, nội thất thiết kế tinh tế và tầm nhìn thành phố vô song từ mọi phòng.",
-    price: 1250000,
+    price: 10,
     location: "Landmark 81, Binh Thanh District, Ho Chi Minh City",
     locationVi: "Landmark 81, Quận Bình Thạnh, TP. Hồ Chí Minh",
     area: 145,
