@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
@@ -6,7 +5,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import PropertyCard from '@/components/properties/PropertyCard';
 import { properties } from '@/data/properties';
-import { MapPin, Bed, Bath, Square, Calendar, Home, Tag, ChevronLeft, ChevronRight } from 'lucide-react';
+import { MapPin, Bed, Bath, Square, Calendar, Home, Tag, ChevronLeft, ChevronRight, ImageOff } from 'lucide-react';
 
 const PropertyDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -14,6 +13,7 @@ const PropertyDetail: React.FC = () => {
   const [property, setProperty] = useState(properties[0]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [similarProperties, setSimilarProperties] = useState<typeof properties>([]);
+  const [imageErrors, setImageErrors] = useState<{[key: number]: boolean}>({});
   
   // Find the property and similar properties
   useEffect(() => {
@@ -45,12 +45,19 @@ const PropertyDetail: React.FC = () => {
     );
   };
 
+  const handleImageError = (index: number) => {
+    setImageErrors(prev => ({...prev, [index]: true}));
+  };
+
   // Format price to USD
   const formattedPrice = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
     maximumFractionDigits: 0,
   }).format(property.price);
+
+  // Fallback image
+  const fallbackImage = "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80";
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -66,11 +73,18 @@ const PropertyDetail: React.FC = () => {
           </div>
           
           <div className="relative aspect-[16/9] md:aspect-[21/9] rounded-lg overflow-hidden">
-            <img
-              src={property.images[currentImageIndex]}
-              alt={language === 'en' ? property.title : property.titleVi}
-              className="w-full h-full object-cover"
-            />
+            {imageErrors[currentImageIndex] ? (
+              <div className="w-full h-full bg-estate-light flex items-center justify-center">
+                <ImageOff className="w-24 h-24 text-estate-charcoal/40" />
+              </div>
+            ) : (
+              <img
+                src={property.images[currentImageIndex] || fallbackImage}
+                alt={language === 'en' ? property.title : property.titleVi}
+                className="w-full h-full object-cover"
+                onError={() => handleImageError(currentImageIndex)}
+              />
+            )}
             
             {/* Navigation Arrows */}
             <button 
@@ -105,7 +119,18 @@ const PropertyDetail: React.FC = () => {
                     : 'border-transparent hover:border-estate-gold/50'
                 }`}
               >
-                <img src={image} alt="" className="w-full h-full object-cover" />
+                {imageErrors[index] ? (
+                  <div className="w-full h-full bg-estate-light flex items-center justify-center">
+                    <ImageOff className="w-5 h-5 text-estate-charcoal/40" />
+                  </div>
+                ) : (
+                  <img 
+                    src={image} 
+                    alt="" 
+                    className="w-full h-full object-cover" 
+                    onError={() => handleImageError(index)}
+                  />
+                )}
               </button>
             ))}
           </div>
