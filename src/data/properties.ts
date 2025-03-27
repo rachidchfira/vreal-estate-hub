@@ -33,7 +33,7 @@ export const properties: Property[] = [
     locationVi: "Quận 1, TP. Hồ Chí Minh",
     area: 380,
     bedrooms: 4,
-    bathrooms: 5,
+    bathrooms: 10,
     type: "Penthouse",
     typeVi: "Căn hộ Penthouse",
     status: "For Sale",
